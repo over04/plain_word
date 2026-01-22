@@ -5,9 +5,21 @@ RUN npm ci
 COPY web/ ./
 RUN npm run build
 
-FROM rust:alpine AS rust-builder
+FROM rust:alpine AS chef
 RUN apk add --no-cache musl-dev sqlite-dev
+RUN cargo install cargo-chef --locked
 WORKDIR /app
+
+FROM chef AS planner
+COPY Cargo.toml ./
+COPY entity ./entity
+COPY migration ./migration
+COPY server ./server
+RUN cargo chef prepare --recipe-path recipe.json
+
+FROM chef AS rust-builder
+COPY --from=planner /app/recipe.json recipe.json
+RUN cargo chef cook --release --recipe-path recipe.json
 COPY Cargo.toml ./
 COPY entity ./entity
 COPY migration ./migration
