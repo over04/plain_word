@@ -8,7 +8,7 @@ RUN npm run build
 FROM rust:alpine AS rust-builder
 RUN apk add --no-cache musl-dev sqlite-dev
 WORKDIR /app
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml ./
 COPY entity ./entity
 COPY migration ./migration
 COPY server ./server
