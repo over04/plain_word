@@ -1,0 +1,13 @@
+target/
+.git/
+.gitignore
+*.md
+.env
+*.db
+*.db-shm
+*.db-wal
+.idea/
+.vscode/
+web/node_modules/
+web/dist/
+docs/

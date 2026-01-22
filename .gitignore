@@ -1,0 +1,37 @@
+# Rust
+/target/
+Cargo.lock
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js
+web/node_modules/
+web/dist/
+web/.vite/
+
+# Build outputs
+server/static/
+!server/static/.gitkeep
+
+# Logs
+*.log
+logs/
